@@ -1,10 +1,13 @@
 import sqlite3 from 'sqlite3';
-import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const DATABASE_PATH = `${path.resolve()}/sample.db`;
+
+const DATABASE_PATH = `${dirname(fileURLToPath(import.meta.url))}/sample.db`;
 console.log(DATABASE_PATH);
 
 //todo вынести обработку ошибок
+//todo проблема с путями к файлу бд
 class DbDao {
   constructor(dbFilePath = DATABASE_PATH) {
     this.db = new sqlite3.Database(dbFilePath, (err) => {
@@ -37,14 +40,14 @@ class DbDao {
     return new Promise((resolve, reject) => {
       this.db.all(query, params, (err, rows) => {
         if (err) {
-          console.log('Error running query: ' + query)
-          console.log(err)
-          reject(err)
+          console.log('Error running query: ' + query);
+          console.log(err);
+          reject(err);
         } else {
-          resolve(rows)
+          resolve(rows);
         }
-      })
-    })
+      });
+    });
   }
 }
 

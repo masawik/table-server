@@ -19,4 +19,4 @@ const populateDb = async (count) => {
   dao.db.close();
 };
 
-populateDb(450);
+populateDb(100);

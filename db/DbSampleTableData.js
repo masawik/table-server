@@ -33,6 +33,19 @@ class DbSampleTableData {
       'INSERT INTO sampleTableData (date, name, count, distance) VALUES (?,?,?,?)',
       [date, name, count, distance]);
   }
+
+  select(limit, offset, sortBy = 'ROWID', sortDesc = false) {
+    const sortDirection = sortDesc ? 'DESC' : 'ASC';
+
+    const query = `
+      SELECT *
+      from sampleTableData
+      order by ? ${sortDirection}
+      limit ?, ?
+    `;
+
+    return this.dao.all(query, ['ROWID', offset, limit]);
+  }
 }
 
 export default DbSampleTableData;

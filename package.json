@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev-server": "nodemon server/index.js",
-    "server": "node server/index.js"
+    "dev-server": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

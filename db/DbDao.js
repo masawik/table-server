@@ -34,6 +34,20 @@ class DbDao {
     });
   }
 
+  get(query, params = []) {
+    return new Promise((resolve, reject) => {
+      this.db.get(query, params, (err, result) => {
+        if (err) {
+          console.log('Error running query: ' + query)
+          console.log(err)
+          reject(err)
+        } else {
+          resolve(result)
+        }
+      })
+    })
+  }
+
   all(query, params = []) {
     return new Promise((resolve, reject) => {
       this.db.all(query, params, (err, rows) => {

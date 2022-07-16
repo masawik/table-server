@@ -42,7 +42,8 @@ class DbSampleTableData {
       [date, name, count, distance]);
   }
 
-  select(limit, offset, sortBy, sortDesc = false) {
+  select(queryParams) {
+    const { limit, offset, sortBy, sortDesc } = queryParams;
     const sortDirection = sortDesc ? 'DESC' : 'ASC';
     const orderBy = tableColumnsMap[sortBy] ?? 'ROWID';
 
@@ -54,6 +55,18 @@ class DbSampleTableData {
     `;
 
     return this.dao.all(query, [offset, limit]);
+  }
+
+  getCountOfPagesByQueryParams(queryParams) {
+    const { limit } = queryParams;
+
+    const query = `
+    SELECT count('ROWID') / ? as 'pages'
+    from sampleTableData
+    order by count ASC
+    `;
+
+    return this.dao.get(query, [limit]);
   }
 }
 

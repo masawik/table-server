@@ -1,5 +1,5 @@
-import express from 'express';
-import tableItemsRouter from './routes/tableItems.js';
+const express = require('express');
+const tableItemsRouter = require('./routes/tableItems.js');
 
 const PORT = process.env.PORT ?? 3010;
 

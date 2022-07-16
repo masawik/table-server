@@ -1,9 +1,9 @@
-import sqlite3 from 'sqlite3';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+const sqlite3 = require('sqlite3');
+const { dirname } = require('path');
+const { fileURLToPath } = require('url');
 
 
-const DATABASE_PATH = `${dirname(fileURLToPath(import.meta.url))}/sample.db`;
+const DATABASE_PATH = `${__dirname}/sample.db`;
 
 //todo вынести обработку ошибок
 class DbDao {
@@ -38,14 +38,14 @@ class DbDao {
     return new Promise((resolve, reject) => {
       this.db.get(query, params, (err, result) => {
         if (err) {
-          console.log('Error running query: ' + query)
-          console.log(err)
-          reject(err)
+          console.log('Error running query: ' + query);
+          console.log(err);
+          reject(err);
         } else {
-          resolve(result)
+          resolve(result);
         }
-      })
-    })
+      });
+    });
   }
 
   all(query, params = []) {
@@ -63,5 +63,4 @@ class DbDao {
   }
 }
 
-export default DbDao;
-
+module.exports = DbDao;

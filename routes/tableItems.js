@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import { getAll } from '../controllers/tableItems.js'
+const express = require('express');
+const getAll = require('../controllers/tableItems');
 
-const router = Router()
+const router = express.Router();
 
-router.get('/api/table-items', getAll)
+router.get('/api/table-items', getAll);
 
-export default router
+module.exports = router;

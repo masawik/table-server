@@ -70,4 +70,4 @@ class DbSampleTableData {
   }
 }
 
-export default DbSampleTableData;
+module.exports = DbSampleTableData

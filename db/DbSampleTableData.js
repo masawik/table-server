@@ -45,7 +45,7 @@ class DbSampleTableData {
   select(queryParams) {
     const { limit, offset, sortBy, sortDesc } = queryParams;
     const sortDirection = sortDesc ? 'DESC' : 'ASC';
-    const orderBy = tableColumnsMap[sortBy] ?? 'ROWID';
+    const orderBy = tableColumnsMap[sortBy] || 'ROWID';
 
     const query = `
       SELECT *

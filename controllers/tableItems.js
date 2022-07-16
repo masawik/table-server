@@ -10,10 +10,10 @@ const sampleTableData = new DbSampleTableData(dao);
 //todo при пагинации с фильтрами использовать метод передачи последнего значения вместо страницы
 
 const getAll = async (req, res) => {
-  const clientPerPage = req.query['per_page'] ?? DEFAULT_ROWS_PER_PAGE;
+  const clientPerPage = req.query['per_page'] || DEFAULT_ROWS_PER_PAGE;
   const perPage = Math.min(clientPerPage, MAX_ROWS_PER_PAGE);
 
-  const page = (req.query['page'] ?? 0) * perPage;
+  const page = (req.query['page'] || 0) * perPage;
   const sortBy = req.query['sort_key'];
 
   const sortDescNumber = Number(req.query['sort_desc']);

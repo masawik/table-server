@@ -4,10 +4,8 @@ import { fileURLToPath } from 'url';
 
 
 const DATABASE_PATH = `${dirname(fileURLToPath(import.meta.url))}/sample.db`;
-console.log(DATABASE_PATH);
 
 //todo вынести обработку ошибок
-//todo проблема с путями к файлу бд
 class DbDao {
   constructor(dbFilePath = DATABASE_PATH) {
     this.db = new sqlite3.Database(dbFilePath, (err) => {

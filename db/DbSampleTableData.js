@@ -1,3 +1,11 @@
+const tableColumnsMap = {
+  id: 'id',
+  date: 'date',
+  name: 'name',
+  count: 'count',
+  distance: 'distance',
+};
+
 class DbSampleTableData {
   constructor(dao) {
     this.dao = dao;
@@ -34,17 +42,18 @@ class DbSampleTableData {
       [date, name, count, distance]);
   }
 
-  select(limit, offset, sortBy = 'ROWID', sortDesc = false) {
+  select(limit, offset, sortBy, sortDesc = false) {
     const sortDirection = sortDesc ? 'DESC' : 'ASC';
+    const orderBy = tableColumnsMap[sortBy] ?? 'ROWID';
 
     const query = `
       SELECT *
       from sampleTableData
-      order by ? ${sortDirection}
+      order by ${orderBy} ${sortDirection}
       limit ?, ?
     `;
 
-    return this.dao.all(query, ['ROWID', offset, limit]);
+    return this.dao.all(query, [offset, limit]);
   }
 }
 
